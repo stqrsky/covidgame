@@ -52,3 +52,43 @@ button {
     box-shadow: 0 1px 1px black;
     margin: 10px;
 }
+
+#start-game {
+    background-color: #aaffb0;
+}
+
+#start-game:hover {
+    background-color: #76ff7e;
+}
+
+#socialdistancing {
+    background-color: #ff7367;
+}
+
+#socialdistancing:hover {
+    background-color: #ff3f43;
+}
+
+#lockdown {
+    background-color: #ffaf4f;
+}
+
+#lockdown:hover {
+    background-color: #ff9a2b;
+}
+
+#vaccination {
+    background-color: #aaffb0;
+}
+
+#vaccination:hover {
+    background-color: #76ff7e;
+}
+
+#giveup {
+    background-color: #ffffff;
+}
+
+#giveup:hover {
+    background-color: #c7c7c7;
+}
