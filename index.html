@@ -12,26 +12,32 @@
             <div class="small-6 columns">
                 <h1 class="text-center">Human Race</h1>
                 <div class="healthbar">
-                    <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
-    
+                    <div 
+                            class="healthbar text-center" 
+                            style="background-color: green; margin: 0; color: white;"
+                            :style="{width: humanHealth + '%'}">
+                        {{ humanHealth }}
                     </div>
                 </div>
             </div>
             <div class="small-6 columns">
                 <h1 class="text-center">Covid-19</h1>
                 <div class="healthbar">
-                    <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
-    
+                    <div 
+                            class="healthbar text-center" 
+                            style="background-color: green; margin: 0; color: white;"
+                            :style="{width: covidHealth + '%'}">
+                        {{ covidHealth }}
                     </div>
                 </div>
             </div>
         </section>
-        <section class="row controls">
+        <section class="row controls" v-if="!gameIsRunning">
             <div class="small-12 columns">
-                <button id="startgame">START NEW GAME</button>
+                <button id="startgame" @click="startGame">START NEW GAME</button>
             </div>
         </section>
-        <section class="row controls">
+        <section class="row controls" v-else>
             <div class="small-12 columns">
                 <button id="socialdistancing">Social Distancing</button>
                 <button id="lockdown">Lockdown</button>
@@ -39,7 +45,8 @@
                 <button id="giveup">GIVE UP</button>
             </div>
         </section>
-        <section class="row log">
+        <!-- simulate Covid damage to Human / generate random number -->
+        <section class="row log">   
             <div class="small-12 columns">
                 <ul>
                     <li>
