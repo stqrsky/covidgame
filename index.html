@@ -39,10 +39,10 @@
         </section>
         <section class="row controls" v-else>
             <div class="small-12 columns">
-                <button id="socialdistancing">Social Distancing</button>
-                <button id="lockdown">Lockdown</button>
-                <button id="vaccination">Vaccination</button>
-                <button id="giveup">GIVE UP</button>
+                <button id="socialdistancing" @click="socialdistancing">Social Distancing</button>
+                <button id="lockdown" @click="lockdown">Lockdown</button>
+                <button id="vaccination" @click="vaccination">Vaccination</button>
+                <button id="giveup" @click="giveup">GIVE UP</button>
             </div>
         </section>
         <!-- simulate Covid damage to Human / generate random number -->
