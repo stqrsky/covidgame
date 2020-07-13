@@ -27,10 +27,15 @@ new Vue({
             this.covidAttacks();
         },
         vaccination: function() {
-
+            if (this.humanHealth <= 90) {
+                this.humanHealth += 10;
+            } else {
+                this.humanHealth = 100;
+            }
+            this.covidAttacks();
         },
         giveup: function() {
-
+            this.gameIsRunning = false;
         },
         covidAttacks: function() {
             this.humanHealth -= this.calculateDamage(5, 12);
