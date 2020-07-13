@@ -11,6 +11,7 @@ new Vue({
             this.gameIsRunning = true;
             this.humanHealth = 100;
             this.covidHealth = 100;
+            this.turns = [];        // to reset the log
         },
         socialdistancing: function() {
             var damage = this.calculateDamage(3, 10);
@@ -26,7 +27,12 @@ new Vue({
             this.covidAttacks();
         },
         lockdown: function() {
-            this.covidHealth -= this.calculateDamage(10, 20);
+            var damage = this.calculateDamage(10, 20);
+            this.covidHealth -= damage;
+            this.turns.unshift({
+                isHuman: true,
+                text: 'Human fights Covid-19 better for ' + damage
+            });            // opposite of push / add it at the beginning of array
             if (this.checkWin()) {
                 return;
             }
@@ -38,6 +44,10 @@ new Vue({
             } else {
                 this.humanHealth = 100;
             }
+            this.turns.unshift({
+                isHuman: true,
+                text: 'Human population stabilizing'
+            });            // opposite of push / add it at the beginning of array
             this.covidAttacks();
         },
         giveup: function() {
