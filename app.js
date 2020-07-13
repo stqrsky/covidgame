@@ -3,7 +3,8 @@ new Vue({
     data: {
         humanHealth: 100,
         covidHealth: 100,
-        gameIsRunning: false
+        gameIsRunning: false,
+        turns: []
     },
     methods: {
         startGame: function() {
@@ -12,7 +13,12 @@ new Vue({
             this.covidHealth = 100;
         },
         socialdistancing: function() {
-            this.covidHealth -= this.calculateDamage(3, 10);
+            var damage = this.calculateDamage(3, 10);
+            this.covidHealth -= damage;
+            this.turns.unshift({
+                isHuman: true,
+                text: 'Human fights Covid-19 for ' + damage
+            });            // opposite of push / add it at the beginning of array
             if (this.checkWin()) {
                 return;
             }
@@ -38,8 +44,13 @@ new Vue({
             this.gameIsRunning = false;
         },
         covidAttacks: function() {
-            this.humanHealth -= this.calculateDamage(5, 12);
+            var damage = this.calculateDamage(5, 12);
+            this.humanHealth -= damage;
             this.checkWin();
+            this.turns.unshift({
+                isHuman: false,
+                text: 'Covid-19 harms human population ' + damage
+            });            // opposite of push / add it at the beginning of array
         },
         calculateDamage: function(min, max) {
             return Math.max(Math.floor(Math.random() * max) + 1, min);
