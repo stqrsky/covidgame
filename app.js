@@ -12,27 +12,13 @@ new Vue({
             this.covidHealth = 100;
         },
         socialdistancing: function() {
-            var max = 10;
-            var min = 3;
-            var damage= Math.max(Math.floor(Math.random() * max) + 1, min);
-            this.covidHealth -= damage;
-
-            if (this.covidHealth <= 0) {
-                alert('Human Race is saved!');
-                this.gameIsRunning = false;
+            this.covidHealth -= this.calculateDamage(3, 10);
+            if (this.checkWin()) {
                 return;
             }
 
-            max = 12;
-            min = 5;
-            damage= Math.max(Math.floor(Math.random() * max) + 1, min);
-            this.humanHealth -= damage;
-
-            if (this.humanHealth <= 0) {
-                alert('Humanity wiped out!');
-                this.gameIsRunning = false;
-                return;
-            }
+            this.humanHealth -= this.calculateDamage(5, 12);
+            this.checkWin();
         },
         lockdown: function() {
 
@@ -42,6 +28,27 @@ new Vue({
         },
         giveup: function() {
 
+        },
+        calculateDamage: function(min, max) {
+            return Math.max(Math.floor(Math.random() * max) + 1, min);
+        },
+        checkWin: function() {
+            if (this.covidHealth <= 0) {
+                if (confirm('Human Race is saved!! New Game?')) {
+                    this.startGame();
+                } else {
+                    this.gameIsRunning = false;
+                }
+                return true;
+            } else if (this.humanHealth <= 0) {
+                if (confirm('Humanity wiped out!! New Game?')) {
+                    this.startGame();
+                } else {
+                    this.gameIsRunning = false;
+                }
+                return true;
+            }
+            return false;
         }
     }
 });
