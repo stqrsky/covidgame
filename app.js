@@ -17,17 +17,24 @@ new Vue({
                 return;
             }
 
-            this.humanHealth -= this.calculateDamage(5, 12);
-            this.checkWin();
+            this.covidAttacks();
         },
         lockdown: function() {
-
+            this.covidHealth -= this.calculateDamage(10, 20);
+            if (this.checkWin()) {
+                return;
+            }
+            this.covidAttacks();
         },
         vaccination: function() {
 
         },
         giveup: function() {
 
+        },
+        covidAttacks: function() {
+            this.humanHealth -= this.calculateDamage(5, 12);
+            this.checkWin();
         },
         calculateDamage: function(min, max) {
             return Math.max(Math.floor(Math.random() * max) + 1, min);
