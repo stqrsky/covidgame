@@ -18,7 +18,7 @@ new Vue({
             this.covidHealth -= damage;
             this.turns.unshift({
                 isHuman: true,
-                text: 'Human fights Covid-19 for ' + damage
+                text: 'Human lowers Covid-19 infections with ' + damage + ' %'
             });            // opposite of push / add it at the beginning of array
             if (this.checkWin()) {
                 return;
@@ -59,7 +59,7 @@ new Vue({
             this.checkWin();
             this.turns.unshift({
                 isHuman: false,
-                text: 'Covid-19 harms human population ' + damage
+                text: 'Covid-19 harms human population with ' + damage + ' %'
             });            // opposite of push / add it at the beginning of array
         },
         calculateDamage: function(min, max) {
